@@ -1,0 +1,30 @@
+<div class="entry-listings">
+  <h1>All Entries</h1>
+  <table class="entry-table">
+    <tr>
+      <th>Entry name</th>
+      <th>Entry content</th>
+      <th>Category</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+
+  <% @entries.each do |entry| %>
+    <tr>
+      <td><%= entry.entry_name %></td>
+      <td><%= entry.entry_content %></td>
+      <td><%= entry.category %></td>
+      <td><%= link_to 'Show', entry %></td>
+      <td><%= link_to 'Edit', edit_entry_path(entry) %></td>
+      <td><%= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </table>
+
+    <div class="right-category-listing">
+      <% @entries.each do |entry| %>
+        <%= link_to entry.category, {:controller => 'entries', :action => 'index', :category => entry.category}, :id => 'filter-links' %>
+      <% end %>
+    </div>
+<div>
